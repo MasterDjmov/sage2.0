@@ -264,12 +264,12 @@
                                         if(count($loc)>0){
                                             echo' 
                                             <input type="text" class="form-control" id="DescripcionLocalidad" name="DescripcionLocalidad" value="'.$loc[0]->localidad.'" autocomplete="off">
-                                            <input type="text" class="form-control" id="idLocalidad" name="idLocalidad" value="'.$loc[0]->idLocalidad.'">
+                                            <input type="hidden" class="form-control" id="idLocalidad" name="idLocalidad" value="'.$loc[0]->idLocalidad.'">
                                             ';
                                         }else{
                                             echo' 
                                             <input type="text" class="form-control" id="DescripcionLocalidad" name="DescripcionLocalidad" value="" autocomplete="off">
-                                            <input type="text" class="form-control" id="idLocalidad" name="idLocalidad" value="">
+                                            <input type="hidden" class="form-control" id="idLocalidad" name="idLocalidad" value="">
                                             ';
                                         }
                                         @endphp
