@@ -40,8 +40,10 @@ Route::get('/getOpcionesOrg',[LuiController::class,'getOpcionesOrg'])->name('get
 Route::get('/verSubOrg',[LuiController::class,'verSubOrg'])->name('verSubOrg');
 Route::get('/Reestructura',[LuiController::class,'Reestructura'])->name('Reestructura');
 Route::get('/PlazaNueva/{idSubOrg}',[LuiController::class,'PlazaNueva'])->name('PlazaNueva');
+Route::get('/getCarrerasTodas/{nombre}',[LuiController::class,'getCarrerasTodas'])->name('getCarrerasTodas');
 Route::get('/getCarrerasPlanes',[LuiController::class,'getCarrerasPlanes'])->name('getCarrerasPlanes');
 Route::get('/getCarreras/{idSubOrg}',[LuiController::class,'getCarreras'])->name('getCarreras');
+
 Route::get('/getPlanes/{idSubOrg}',[LuiController::class,'getPlanes'])->name('getPlanes');
 Route::get('/verDivisiones',[LuiController::class,'verDivisiones'])->name('verDivisiones');
 Route::get('/getDivision/{idSubOrg}/{idPlanEstudio}',[LuiController::class,'getDivision'])->name('getDivision');

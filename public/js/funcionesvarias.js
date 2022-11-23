@@ -244,4 +244,26 @@ function getAgentes() {
     }
     
  }
+
+ function getCarrerasTodas(){
+    $.ajax({
+        type: "get",
+        url: "/getCarrerasTodas/"+ $("#btCarreras").val(),
+        success: function (response) {
+            document.getElementById('contenidoCarreras').innerHTML=response.msg;
+            
+        }
+    });
+ }
+
+ function seleccionarCarreraTodas($idCarrera){
+    
+    
+     var DescripcionCarreras = document.getElementById('DescripcionCarreras');
+     var nomCarreraModal = document.getElementById('nomCarreraModal'+$idCarrera);
+     console.log(nomCarreraModal)
+     DescripcionCarreras.value=nomCarreraModal.value;
+     document.getElementById('Carreras').value=$idCarrera;
+    
+ }
  
