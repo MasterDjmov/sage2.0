@@ -20,14 +20,54 @@
                     <form method="POST" action="{{ route('formularioCarreras') }}" class="formularioCarreras">
                     @csrf
                     <div class="card-body">
-                        <div class="form-group">
-                            <label for="Carreras">Carreras Disponibles</label>
-                            <select class="form-control" name="Carreras" id="Carreras">
-                            @foreach($CarrerasTodas as $key => $o)
-                                <option value="{{$o->idCarrera}}">{{$o->Descripcion}} - {{$o->Titulo }}</option>
-                            @endforeach
-                            </select>
-                        </div>  
+                        <div class="form-inline form-group">
+                                <label for="carrera">Carreras Disponibles P</label>
+                                <input type="text" class="form-control" id="DescripcionCarreras" name="DescripcionCarreras" value="" autocomplete="off">
+                                <input type="hidden" class="form-control" id="Carreras" name="Carreras" value="">
+                                <a class="btn btn-success" data-toggle="modal" href="#modalCarrera">
+                                    <i class="fa fa-ellipsis-h"></i>
+                                </a>
+                                
+                                <div class="modal fade" id="modalCarrera" style="display: none;" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Lista de Carreras Cargadas</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-header">
+                                                <div class="form-group">
+                                                    <label for="Referencia">Buscar Carrera: </label>
+                                                    <input type="text" id="btCarreras" onkeyup="getCarrerasTodas()" placeholder="Ingrese Nombre de la Carrera">
+                                                </div>
+                                            </div>
+                                            <div class="modal-body">
+                                                <table id="" class="table table-bordered table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>LOCALIDAD</th>
+                                                            <th>PROVINCIA</th>
+                                                            <th>OPCION</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="contenidoCarreras">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="modal-footer justify-content-between">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+                                <!-- /.fin modal -->
+                        </div>                    
+                        
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Agregar</button>
                         </div>

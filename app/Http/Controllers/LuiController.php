@@ -323,6 +323,32 @@ class LuiController extends Controller
         return response()->json(array('status' => 200, 'msg' => $respuesta), 200);
     }
 
+    public function getCarrerasTodas($nombre){
+        //traigo las relaciones Suborg->planes->carrera
+        $carreras = DB::table('tb_carreras')
+        ->orWhere('Descripcion', 'like', '%' . $nombre . '%')
+        ->get();
+
+       
+        $respuesta="";
+       
+        foreach($carreras as $carrera){
+            $respuesta=$respuesta.'
+            <tr class="gradeX">
+                <td>'.$carrera->idCarrera.'</td>
+                <td>'.$carrera->Descripcion.'<input type="hidden" id="nomCarreraModal'.$carrera->idCarrera.'" value="'.$carrera->Descripcion.'"</td>
+                <td>'.$carrera->Titulo.'</td>
+                <td>'.$carrera->Duracion.'</td>
+                <td>
+                    <button type="button" onclick="seleccionarCarreraTodas('.$carrera->idCarrera.')">Seleccionar</button>
+                </td>
+            </tr>';
+            
+            
+        }
+       
+        return response()->json(array('status' => 200, 'msg' => $respuesta), 200);
+    }
     public function getPlanes($idSubOrg){
         //traigo las relaciones Suborg->planes->carrera
         $Planes = DB::table('tb_planesestudio')
