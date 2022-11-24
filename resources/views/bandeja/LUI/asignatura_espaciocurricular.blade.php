@@ -224,8 +224,9 @@
                         <table id="" class="table table-bordered table-striped">
                         <div class="card-body">
                         <div class="form-group">
-                            <label for="Planes">Seleccionar Plan de Estudio</label>
+                            <label for="Planes">Seleccionar Modalidad de Estudio</label>
                             <select class="form-control" name="idPlan" id="idPlan" onchange="controlarPlan()">
+                            <option value="0">SELECCIONE UNA MODALIDAD</option>
                             @foreach($Planes as $key => $o)
                                 <option value="{{$o->idPlanEstudio}}">{{$o->DescripcionPlan}}</option>
                             @endforeach
@@ -236,24 +237,12 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Asignatura</th>
-                                <th>Plan Asociado</th>
+                                <th>Modalidad Asociado</th>
                                 <th>Opcion</th>
                             </tr>
                         </thead>
                         <tbody id="contenidoSelectPlan">
-                        {{-- @foreach($PlanesRelSubOrg as $key => $o)
-                                <tr class="gradeX">
-                                    <td>{{$o->PlanEstudio}}</td>
-                                    <td>{{$o->Descripcion}}</td>
-                                    <td>{{$o->FechaAlta}}</td>
-                                    <td>
-                                        <a href="{{route('desvincularPlan',$o->idRelSuborganizacionPlan)}}">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
-                                    </td>
-                                    
-                                </tr>
-                            @endforeach --}}
+                        
                         </tbody>
                         </table>
                     </div>
@@ -397,6 +386,15 @@
 </script>
 
     <script src="{{ asset('js/funcionesvarias.js') }}"></script>
+           @if (session('ConfirmarEliminarEspCur')=='OK')
+            <script>
+            Swal.fire(
+                'Registro guardado',
+                'Se desvinculo correctamente',
+                'success'
+                    )
+            </script>
+        @endif
         @if (session('ConfirmarActualizarEspCur')=='OK')
             <script>
             Swal.fire(

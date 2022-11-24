@@ -377,7 +377,9 @@ class LuiController extends Controller
                 <td>'.$EspacioCurricular->NomAsignatura.'</td>
                 <td>'.$EspacioCurricular->NomPlan.'</td>
                 <td>
-                    <button type="button">Opcion -ver</button>
+                    <a href="/desvincularEspCur/'.$EspacioCurricular->idEspacioCurricular.'">
+                    <i class="fa fa-trash"></i>
+                    </a>
                 </td>
             </tr>';
             
