@@ -244,7 +244,17 @@ function getAgentes() {
     }
     
  }
-
+ function controlarPlan(){
+    $.ajax({
+        type: "get",
+        url: "/getEspCurPlan/"+ $("#idPlan").val(),
+        success: function (response) {
+            document.getElementById('contenidoSelectPlan').innerHTML=response.msg;
+            
+        }
+    });
+    
+ }
  function getCarrerasTodas(){
     $.ajax({
         type: "get",
@@ -267,3 +277,24 @@ function getAgentes() {
     
  }
  
+ //pagina de asignatura y espacio curricular, combo por ventana modal
+ function getAsignatura(){
+    $.ajax({
+        type: "get",
+        url: "/getAsignatura/"+ $("#btAsignatura").val(),
+        success: function (response) {
+            document.getElementById('contenidoAsignatura').innerHTML=response.msg;
+            
+        }
+    });
+ }
+
+ function seleccionarAsignatura($idAsignatura){
+    
+    
+     var DescripcionAsignatura = document.getElementById('DescripcionAsignatura');
+     var nomAsignaturaModal = document.getElementById('nomAsignaturaModal'+$idAsignatura);
+     DescripcionAsignatura.value=nomAsignaturaModal.value;
+     document.getElementById('Asignatura').value=$idAsignatura;
+    
+ }

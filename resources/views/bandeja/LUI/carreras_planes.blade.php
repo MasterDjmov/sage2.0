@@ -11,6 +11,11 @@
                 <div class="col-md-6">
                     <div class="card card-default">
                     <div class="card-header">
+                        <div class="alert alert-warning alert-dismissible">
+                            <h5><i class="icon fas fa-exclamation-triangle"></i> Alerta!</h5>
+                            Aqui dejar algun mensaje<br>
+                            Ejemplo: <b>aqui algun ejemplo</b>
+                        </div>
                         <h3 class="card-title">
                         <i class="fas fa-book"></i>
                         Panel de Control - Carreras
@@ -21,7 +26,7 @@
                     @csrf
                     <div class="card-body">
                         <div class="form-inline form-group">
-                                <label for="carrera">Carreras Disponibles P</label>
+                                <label for="carrera">Carreras Disponibles </label>
                                 <input type="text" class="form-control" id="DescripcionCarreras" name="DescripcionCarreras" value="" autocomplete="off">
                                 <input type="hidden" class="form-control" id="Carreras" name="Carreras" value="">
                                 <a class="btn btn-success" data-toggle="modal" href="#modalCarrera">
@@ -127,7 +132,7 @@
                     <div class="card-header">
                         <h3 class="card-title">
                         <i class="fas fa-book"></i>
-                        Panel de Control - Planes
+                        Panel de Control - Modalidades
                         </h3>
                     </div>
                     <!-- /.card-header -->
@@ -143,7 +148,7 @@
                             </select>
                         </div> 
                         <div class="form-group">
-                            <label for="Plan">Planes Disponibles</label>
+                            <label for="Plan">Modalidades Disponibles</label>
                             <select class="form-control" name="Plan" id="Plan">
                             @foreach($PlanesDeEstudio as $key => $p)
                                 <option value="{{$p->idPlanEstudio}}">{{$p->Descripcion}}</option>
@@ -164,7 +169,7 @@
                     <!-- Inicio Tabla-Card -->
                     <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Lista de Planes Activos</h3>
+                        <h3 class="card-title">Lista de Modalidades Activas</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -174,7 +179,7 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Descripcion del Plan</th>
+                                <th>Descripcion de la Modalidad</th>
                                 <th>Fecha de Alta</th>
                                 <th>Opcion</th>
                             </tr>

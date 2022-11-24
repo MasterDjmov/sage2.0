@@ -416,19 +416,35 @@ class LupController extends Controller
     }
 
     public function formularioEspCur(Request $request){
-        dd($request);
+        //dd($request);
         /*
-        "_token" => "cIBNdObN9KAjHSbmpPLyViviCJQPqmsy3S34hSV6"
-        "Carrera" => "1"
+        "_token" => "7YvTZSWRffXI1AhybeLH1cX6CI8djuk9dnMfAR0c"
+        "DescripcionAsignatura" => "historia prueba"        --ok
+        "Asignatura" => "652"                               --ok
+        "Carrera" => "108"                                  --ok
+        "Planes" => "112"                                   --ok
+        "CursoDivision" => "648"                            --ok
+        "TipoHora" => "2"                                   --ok
+        "CantHoras" => "20"                                 --ok
+        "RegimenDictado" => "2"                             --ok
+        "TiposDeEspacioCurricular" => "12"                  --ok
+        "Observaciones" => "prueba de esp cur"
         */
         //primero voy a borrar todos los datos de una suborg
        
-        $Asignaturas = new AsignaturaModel();
-        $Asignaturas->Descripcion = $request->Descripcion;
-        $Asignaturas->UsuarioCreador = session('idUsuario');
-        $Asignaturas->save();
+        $Ep = new EspacioCurricularModel();
+        $Ep->Descripcion = $request->DescripcionAsignatura;
+        $Ep->Carrera = $request->Carrera;
+        $Ep->CursoDivision = $request->CursoDivision;
+        $Ep->Tipo = $request->TiposDeEspacioCurricular;
+        $Ep->Asignatura = $request->Asignatura;
+        $Ep->Horas = $request->CantHoras;
+        $Ep->PlanEstudio = $request->Planes;
+        $Ep->RegimenDictado = $request->RegimenDictado;
+        $Ep->TipoHora = $request->TipoHora;
+        $Ep->save();
 
-        return redirect("/verAsigEspCur")->with('ConfirmarActualizarAsignatura','OK');
+        return redirect("/verAsigEspCur")->with('ConfirmarActualizarEspCur','OK');
     }
     public function formularioPlanes(Request $request){
         //dd($request);

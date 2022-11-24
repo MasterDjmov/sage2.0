@@ -12,11 +12,11 @@
                     <!-- Inicio Tabla-Card -->
                     <div class="card">
                         <div class="card-header">
-                        <div class="alert alert-warning alert-dismissible">
-                            <h5><i class="icon fas fa-exclamation-triangle"></i> Alerta!</h5>
-                            Antes de agregar una nueva Asignatura, primero consulte en la lista si ya existe<br>
-                            Ejemplo: <b>Nivel Inicial debe usar Asignatura Generica</b>
-                        </div>
+                            <div class="alert alert-warning alert-dismissible">
+                                <h5><i class="icon fas fa-exclamation-triangle"></i> Alerta!</h5>
+                                Antes de agregar una nueva Asignatura, primero consulte en la lista si ya existe<br>
+                                Ejemplo: <b>Nivel Inicial debe usar Asignatura Generica</b>
+                            </div>
                             <h3 class="card-title">Lista de Asignaturas en SAGE</h3>
                         </div>
                         <!-- /.card-header -->
@@ -93,14 +93,60 @@
                     <form method="POST" action="{{ route('formularioEspCur') }}" class="formularioEspCur">
                     @csrf
                     <div class="card-body">
-                        <div class="form-group">
+                        <div class="form-inline form-group">
+                                <label for="Asignatura">Asignaturas</label>
+                                <input type="text" class="form-control" id="DescripcionAsignatura" name="DescripcionAsignatura" value="" autocomplete="off">
+                                <input type="hidden" class="form-control" id="Asignatura" name="Asignatura" value="">
+                                <a class="btn btn-success" data-toggle="modal" href="#modalAsignatura">
+                                    <i class="fa fa-ellipsis-h"></i>
+                                </a>
+                                
+                                <div class="modal fade" id="modalAsignatura" style="display: none;" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Lista de Asignatura Cargadas</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-header">
+                                                <div class="form-group">
+                                                    <label for="Referencia">Buscar Asignatura: </label>
+                                                    <input type="text" id="btAsignatura" onkeyup="getAsignatura()" placeholder="Ingrese Nombre de la Carrera">
+                                                </div>
+                                            </div>
+                                            <div class="modal-body">
+                                                <table id="" class="table table-bordered table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>Descripcion</th>
+                                                            <th>OPCION</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="contenidoAsignatura">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="modal-footer justify-content-between">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+                                <!-- /.fin modal -->
+                        </div> 
+                        {{-- <div class="form-group">
                             <label for="Asignatura">Asignaturas</label>
                             <select class="form-control" name="Asignatura" id="Asignatura">
                             @foreach($Asignaturas as $key => $o)
                                 <option value="{{$o->idAsignatura}}">{{$o->Descripcion}}</option>
                             @endforeach
                             </select>
-                        </div> 
+                        </div>  --}}
                         <div class="form-group">
                             <label for="Carrera">Carreras Disponibles</label>
                             <select class="form-control" name="Carrera" id="Carrera">
@@ -177,16 +223,24 @@
                     <div class="card-body">
                         <table id="" class="table table-bordered table-striped">
                         <div class="card-body">
+                        <div class="form-group">
+                            <label for="Planes">Seleccionar Plan de Estudio</label>
+                            <select class="form-control" name="idPlan" id="idPlan" onchange="controlarPlan()">
+                            @foreach($Planes as $key => $o)
+                                <option value="{{$o->idPlanEstudio}}">{{$o->DescripcionPlan}}</option>
+                            @endforeach
+                            </select>
+                        </div>
                         <table id="" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Descripcion del Plan</th>
-                                <th>Fecha de Alta</th>
+                                <th>Asignatura</th>
+                                <th>Plan Asociado</th>
                                 <th>Opcion</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="contenidoSelectPlan">
                         {{-- @foreach($PlanesRelSubOrg as $key => $o)
                                 <tr class="gradeX">
                                     <td>{{$o->PlanEstudio}}</td>

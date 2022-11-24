@@ -10,4 +10,6 @@ class EspacioCurricularModel extends Model
     use HasFactory;
     protected $table='tb_espacioscurriculares';
     protected $primaryKey = 'idEspacioCurricular';
+
+    public $timestamps = false;
 }
