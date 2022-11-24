@@ -349,6 +349,69 @@ class LuiController extends Controller
        
         return response()->json(array('status' => 200, 'msg' => $respuesta), 200);
     }
+
+    public function getEspCurPlan($idPlan){
+        //traigo las relaciones Suborg->planes->carrera
+        $EspacioCurriculares = DB::table('tb_espacioscurriculares')
+        ->join('tb_asignaturas', 'tb_asignaturas.idAsignatura', 'tb_espacioscurriculares.Asignatura')
+        ->join('tb_planesestudio', 'tb_planesestudio.idPlanEstudio', 'tb_espacioscurriculares.PlanEstudio')
+        ->where('tb_espacioscurriculares.SubOrg',session('idSubOrganizacion'))
+        ->where('tb_espacioscurriculares.PlanEstudio',$idPlan)
+        ->select(
+            'tb_planesestudio.idPlanEstudio',
+            'tb_planesestudio.Descripcion as NomPlan',
+            'tb_asignaturas.idAsignatura',
+            'tb_asignaturas.Descripcion as NomAsignatura',
+            'tb_asignaturas.idAsignatura',
+            'tb_espacioscurriculares.idEspacioCurricular',
+        )
+        ->get();
+
+       
+        $respuesta="";
+       
+        foreach($EspacioCurriculares as $EspacioCurricular){
+            $respuesta=$respuesta.'
+            <tr class="gradeX">
+                <td>'.$EspacioCurricular->idEspacioCurricular.'</td>
+                <td>'.$EspacioCurricular->NomAsignatura.'</td>
+                <td>'.$EspacioCurricular->NomPlan.'</td>
+                <td>
+                    <button type="button">Opcion -ver</button>
+                </td>
+            </tr>';
+            
+            
+        }
+       
+        return response()->json(array('status' => 200, 'msg' => $respuesta), 200);
+    }
+    //funcion creada para esp curricular
+    public function getAsignatura($nombre){
+        //traigo las relaciones Suborg->planes->carrera
+        $Asignaturas = DB::table('tb_asignaturas')
+        ->orWhere('Descripcion', 'like', '%' . $nombre . '%')
+        ->get();
+
+       
+        $respuesta="";
+       
+        foreach($Asignaturas as $Asignatura){
+            $respuesta=$respuesta.'
+            <tr class="gradeX">
+                <td>'.$Asignatura->idAsignatura.'</td>
+                <td>'.$Asignatura->Descripcion.'<input type="hidden" id="nomAsignaturaModal'.$Asignatura->idAsignatura.'" value="'.$Asignatura->Descripcion.'"</td>
+                <td>
+                    <button type="button" onclick="seleccionarAsignatura('.$Asignatura->idAsignatura.')">Seleccionar</button>
+                </td>
+            </tr>';
+            
+            
+        }
+       
+        return response()->json(array('status' => 200, 'msg' => $respuesta), 200);
+    }
+
     public function getPlanes($idSubOrg){
         //traigo las relaciones Suborg->planes->carrera
         $Planes = DB::table('tb_planesestudio')

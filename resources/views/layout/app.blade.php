@@ -132,7 +132,7 @@
               <li class="nav-item">
                 <a href="{{route('getCarrerasPlanes')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Carreras y Planes</p>
+                  <p>Carreras y Modalidades</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -148,18 +148,6 @@
                 </a>
               </li>          
               
-              <li class="nav-item">
-                <a href="javascript:;" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>(quitar)Reestructura</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="javascript:;" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Reparticiones</p>
-                </a>
-              </li>
             </ul>
           </li>
           <li class="nav-item">
