@@ -45,7 +45,7 @@ Route::get('/getCarrerasPlanes',[LuiController::class,'getCarrerasPlanes'])->nam
 Route::get('/getCarreras/{idSubOrg}',[LuiController::class,'getCarreras'])->name('getCarreras');
 Route::get('/getAsignatura/{nombre}',[LuiController::class,'getAsignatura'])->name('getAsignatura');
 Route::get('/getEspCurPlan/{idPlan}',[LuiController::class,'getEspCurPlan'])->name('getEspCurPlan');
-
+Route::get('/desvincularEspCur/{idEspCur}',[LupController::class,'desvincularEspCur'])->name('desvincularEspCur');
 
 Route::get('/getPlanes/{idSubOrg}',[LuiController::class,'getPlanes'])->name('getPlanes');
 Route::get('/verDivisiones',[LuiController::class,'verDivisiones'])->name('verDivisiones');

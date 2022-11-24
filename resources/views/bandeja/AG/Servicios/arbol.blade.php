@@ -28,7 +28,7 @@
                     
                     <h3>Configurar Nuevo Agente:</h3>
                         <div class="container mt-3 d-block">
-                        <form action="/agregarAgenteEscuela" method="POST" class="formularioNuevoAgente">
+                        <form method="POST" action="{{ route('agregaragenteaesuela') }}" class="formularioCarreras">
                             @csrf
                           <div class="row">
                             <!--primera Card-->

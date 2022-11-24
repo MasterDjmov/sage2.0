@@ -375,6 +375,13 @@ class LupController extends Controller
         return redirect("/verDivisiones")->with('ConfirmarEliminarDivision','OK');
     }
 
+    public function desvincularEspCur($idEspCur){
+        //elimino la carrera seleccionada
+        DB::table('tb_espacioscurriculares')
+        ->where('idEspacioCurricular', $idEspCur)
+        ->delete();
+        return redirect("/verAsigEspCur")->with('ConfirmarEliminarEspCur','OK');
+    }
     public function formularioCarreras(Request $request){
         //dd($request);
         /*
@@ -442,6 +449,7 @@ class LupController extends Controller
         $Ep->PlanEstudio = $request->Planes;
         $Ep->RegimenDictado = $request->RegimenDictado;
         $Ep->TipoHora = $request->TipoHora;
+        $Ep->SubOrg = session('idSubOrganizacion');
         $Ep->save();
 
         return redirect("/verAsigEspCur")->with('ConfirmarActualizarEspCur','OK');
