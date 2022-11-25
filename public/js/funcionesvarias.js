@@ -120,7 +120,7 @@ function getAgentes() {
      var DescripcionAgente = document.getElementById('DescripcionNombreAgente');
      var nomAgenteModal = document.getElementById('nomAgenteModal'+$idAgente);
      DescripcionAgente.innerHTML="Docente: " + nomAgenteModal.value;
-     document.getElementById('idAgente').value=$idAgente;
+     document.getElementById('idAgenteNuevoNodo').value=$idAgente;
     
  }
 
@@ -298,3 +298,35 @@ function getAgentes() {
      document.getElementById('Asignatura').value=$idAsignatura;
     
  }
+
+ //ag con cargos y funciones
+ function getCargosFunciones(){
+    if( $("#btCargos").val() != ""){
+        $.ajax({
+            type: "get",
+            url: "/getCargosFunciones/"+ $("#btCargos").val(),
+            success: function (response) {
+                document.getElementById('contenidoCargosFunciones').innerHTML=response.msg;
+                
+            }
+        }); 
+    }
+ }
+ function seleccionarCargo($idCargo){
+    var DescripcionCargo = document.getElementById('DescripcionCargo');
+    var nomCargoModal = document.getElementById('nomCargoModal'+$idCargo);
+    var nomCodigoModal = document.getElementById('nomCodigoModal'+$idCargo);
+    DescripcionCargo.innerHTML=nomCargoModal.value+"("+ nomCodigoModal.value +")";
+    document.getElementById('CargoSal').value=$idCargo;
+   
+}
+
+function seleccionarAsigAgente($idAsignatura){
+    var DescripcionEspCur = document.getElementById('DescripcionEspCur');
+    var nomAsigModal = document.getElementById('nomAsignaturaAgenteModal'+$idAsignatura);
+    var nomCodigoModal = document.getElementById('idAsignaturaAgenteModal'+$idAsignatura);
+    //console.log(document.getElementById('nomAsignaturaAgenteModal'+$idAsignatura).value)
+    DescripcionEspCur.innerHTML=nomAsigModal.value;
+    document.getElementById('idEspCur').value=nomCodigoModal.value;
+   
+}
