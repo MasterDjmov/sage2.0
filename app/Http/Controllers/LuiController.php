@@ -540,16 +540,18 @@ class LuiController extends Controller
         $Divisiones = DB::table('tb_divisiones')
         ->where('tb_divisiones.idSubOrg',session('idSubOrganizacion'))
         ->join('tb_cursos','tb_cursos.idCurso', '=', 'tb_divisiones.Curso')
-        ->join('tb_division','tb_division.idDivisionU', '=', 'tb_divisiones.Division')
-        ->join('tb_turnos', 'tb_turnos.idTurno', '=', 'tb_divisiones.Turno')
+        //->join('tb_division','tb_division.idDivisionU', '=', 'tb_divisiones.Division')
+        //->join('tb_turnos', 'tb_turnos.idTurno', '=', 'tb_divisiones.Turno')
         ->select(
-            'tb_divisiones.*',
-            'tb_cursos.*',
-            'tb_division.*',
-            'tb_turnos.Descripcion as DescripcionTurno',
-            'tb_turnos.idTurno',
+            //'tb_divisiones.idDivision',
+            'tb_divisiones.Curso',
+            //'tb_cursos.*',
+            //'tb_division.*',
+            //'tb_turnos.Descripcion as DescripcionTurno',
+           // 'tb_turnos.idTurno',
         )
-        ->orderBy('tb_cursos.DescripcionCurso','ASC')
+        //->orderBy('tb_cursos.DescripcionCurso','ASC')
+        ->groupBy('tb_divisiones.Curso')
         ->get();
         $datos=array(
             'mensajeError'=>"",

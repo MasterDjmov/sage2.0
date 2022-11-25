@@ -246,9 +246,9 @@ class LupController extends Controller
         $o = new AgenteModel();
           $o->TipoDocumento = $request->TipoDocumento;
           $o->Documento = $request->Documento;
-          $o->Nombres = $request->Apellido." ".$request->Nombre;
-          $o->Apellido = $request->Apellido;
-          $o->Nombre = $request->Nombre;
+          $o->Nombres = strtoupper($request->Apellido)." ".strtoupper($request->Nombre);
+          $o->Apellido = strtoupper($request->Apellido);
+          $o->Nombre = strtoupper($request->Nombre);
           $o->TipoAgente = $request->TipoDeAgente;
           $o->Sexo = $request->Sexo;
           $o->CUIL = $request->CUIL;
@@ -442,7 +442,7 @@ class LupController extends Controller
         $Ep = new EspacioCurricularModel();
         $Ep->Descripcion = $request->DescripcionAsignatura;
         $Ep->Carrera = $request->Carrera;
-        $Ep->CursoDivision = $request->CursoDivision;
+        $Ep->Curso = $request->CursoDivision;
         $Ep->Tipo = $request->TiposDeEspacioCurricular;
         $Ep->Asignatura = $request->Asignatura;
         $Ep->Horas = $request->CantHoras;

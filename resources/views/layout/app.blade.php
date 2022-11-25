@@ -113,7 +113,7 @@
               <p>
                 Legajo U. Institucional
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">6</span>
+                <span class="badge badge-info right"><!--aqui algo--></span>
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -156,7 +156,7 @@
               <p>
                 Legajo U. de Personal
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">6</span>
+                <span class="badge badge-info right"><!--aqui algo--></span>
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -187,7 +187,7 @@
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
                 Salir
-                <span class="badge badge-info right">2</span>
+                <span class="badge badge-info right"><!--aqui algo--></span>
               </p>
             </a>
           </li>
