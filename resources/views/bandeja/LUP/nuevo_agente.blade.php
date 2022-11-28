@@ -242,7 +242,7 @@
                 </div>
                 <!-- /.card-body -->
 
-                <div class="card-footer">
+                <div class="card-footer" id="NuevoAgenteContenido" style="display:none">
                   <button type="submit" class="btn btn-primary">Agregar</button>
                 </div>
               </form>
