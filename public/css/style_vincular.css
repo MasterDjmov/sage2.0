@@ -6,9 +6,10 @@
     --bg-st:#f0ad4e;
 }
 
-.bg-suplente{background-color: #fae278;}
-.bg-titular{background-color: #cffc93;}
-
+.bg-Suplente{background-color: #fae278;}
+.bg-Titular{background-color: #cffc93;}
+.bg-Volante{background-color: #689c23;}
+.bg-Interino{background-color: #379ad3;}
 .st0{
 width: 0; 
 height: 0; 

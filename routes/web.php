@@ -88,6 +88,12 @@ Route::post('/agregarDatoANodo',[AgController::class,'agregarDatoANodo'])->name(
 Route::get('/getCargosFunciones/{nomCargoFuncionCodigo}',[AgController::class,'getCargosFunciones'])->name('getCargosFunciones');
 Route::get('/ActualizarNodoAgente/{idNodo}',[AgController::class,'ActualizarNodoAgente'])->name('ActualizarNodoAgente');
 Route::post('/formularioActualizarAgente',[AgController::class,'formularioActualizarAgente'])->name('formularioActualizarAgente');
+Route::post('/formularioActualizarHorario',[AgController::class,'formularioActualizarHorario'])->name('formularioActualizarHorario');
+Route::get('/getAgentesActualizar/{DNI}',[AgController::class,'getAgentesActualizar'])->name('getAgentesActualizar');
+Route::get('/desvincularDocente/{idNodo}',[AgController::class,'desvincularDocente'])->name('desvincularDocente');
+Route::get('/eliminarNodo/{idNodo}',[AgController::class,'eliminarNodo'])->name('eliminarNodo');
+Route::get('/getFiltrandoNodos/{idNodo}',[AgController::class,'getFiltrandoNodos'])->name('getFiltrandoNodos');
+
 
 
 
