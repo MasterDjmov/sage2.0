@@ -93,7 +93,7 @@ Route::get('/getAgentesActualizar/{DNI}',[AgController::class,'getAgentesActuali
 Route::get('/desvincularDocente/{idNodo}',[AgController::class,'desvincularDocente'])->name('desvincularDocente');
 Route::get('/eliminarNodo/{idNodo}',[AgController::class,'eliminarNodo'])->name('eliminarNodo');
 Route::get('/getFiltrandoNodos/{idNodo}',[AgController::class,'getFiltrandoNodos'])->name('getFiltrandoNodos');
-
+Route::get('/retornarNodo/{idNodo}',[AgController::class,'retornarNodo'])->name('retornarNodo');
 
 
 

@@ -6,6 +6,11 @@
 <section id="container" >
     <section id="main-content">
         <section class="wrapper">
+        <div class="alert alert-warning alert-dismissible">
+                            <h5><i class="icon fas fa-exclamation-triangle"></i> Alerta!</h5>
+                            Aqui dejar algun mensaje<br>
+                            Ejemplo: <b>aqui algun ejemplo</b>
+                        </div>
             <!-- Inicio Selectores fila 2 -->
             <div class="row">
                 <!-- datos edificio -->

@@ -177,7 +177,8 @@ function getAgentes() {
                     'error'
                         )
                 //alert("El DNI ya existe");
-                document.getElementById('NuevoAgenteContenido').style.display = "none";
+                document.getElementById('NuevoAgenteContenido1').style.display = "none";
+                document.getElementById('NuevoAgenteContenido2').style.display = "none";
             }else{
                 //alert("El DNI buscado no fue encontrado, puede agregarlo");
                 Swal.fire(
@@ -185,7 +186,8 @@ function getAgentes() {
                     'El DNI buscado puede ser usado',
                     'success'
                         )
-                document.getElementById('NuevoAgenteContenido').style.display="block";
+                document.getElementById('NuevoAgenteContenido1').style.display="block";
+                document.getElementById('NuevoAgenteContenido2').style.display="block";
                 document.getElementById('Documento').value=document.getElementById('buscarAgente').value;
                 document.getElementById('DH').value=document.getElementById('buscarAgente').value;
             }
@@ -208,10 +210,10 @@ function getAgentes() {
  function seleccionarLocalidad($idLocalidad){
     
     
-     var DescripcionLocalidad = document.getElementById('DescripcionLocalidad');
+     var DescripcionLocalidad = document.getElementById('nomLocalidad');
      var nomLocalidadModal = document.getElementById('nomLocalidadModal'+$idLocalidad);
      DescripcionLocalidad.value=nomLocalidadModal.value;
-     document.getElementById('idLocalidad').value=$idLocalidad;
+     document.getElementById('Localidad').value=$idLocalidad;
     
  }
 

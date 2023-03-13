@@ -16,19 +16,19 @@
             <div class="row">
                 <div class="card-body">
                     <p>Aqui ponemos alguna ayuda para los que editan la info</p>
-                    <a href="{{route('agregaNodo',$infoNodos[0]->idNodo)}}" class="btn btn-app bg-info">
-                    <i class="fas fa-people-arrows"></i> Vincular
-                    </a>
-                    @if ($infoNodos[0]->PosicionAnterior != "")
-                        <a href="{{route('eliminarNodo',$infoNodos[0]->idNodo)}}" id="EliminarNodo" class="btn btn-app bg-danger">
-                    <i class="fas fa-eraser"></i> Eliminar Nodo
+                    @if ($infoNodos[0]->PosicionSiguiente == "")
+                        <a href="{{route('agregaNodo',$infoNodos[0]->idNodo)}}" class="btn btn-app bg-info Vincular">
+                        <i class="fas fa-stethoscope"></i> Vincular
                     </a>
                     @endif
-                    <a class="btn btn-app bg-info">
-                    <i class="fas fa-stethoscope"></i> Pedir Licencia
-                    </a>
-                    <a class="btn btn-app bg-info">
-                    <i class="fas fa-plus"></i> Opcion
+                    
+                    @if ($infoNodos[0]->PosicionAnterior != "")
+                        <a href="{{route('eliminarNodo',$infoNodos[0]->idNodo)}}" id="EliminarNodo" class="btn btn-app bg-danger">
+                            <i class="fas fa-eraser"></i> Eliminar Nodo
+                        </a>
+                    @endif
+                    <a href="{{route('retornarNodo',$infoNodos[0]->idNodo)}}" id="RetornarNodo" class="btn btn-app bg-info">
+                        <i class="fas fa-undo"></i> Regresar
                     </a>
               </div>
             </div>
@@ -327,7 +327,24 @@
             </script>
         @endif
     <script>
-
+    $('.Vincular').click(function(e){
+       e.preventDefault(); 
+        Swal.fire({
+            title: 'Esta seguro de querer crear una vinculacion/licencia con otro agente?',
+            text: "Recuerde colocar datos verdaderos",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, guardo el registro!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = $('.Vincular').attr('href');
+            }else{
+                return false;
+            }
+          })
+    })
     $('.formularioActualizarAgente').submit(function(e){
         e.preventDefault();
         Swal.fire({
@@ -358,6 +375,25 @@
           }).then((result) => {
             if (result.isConfirmed) {
               window.location.href = $('#EliminarNodo').attr('href');;
+            }else{
+                return false;
+            }
+          })
+    })
+
+    $('#RetornarNodo').click(function(e){
+       e.preventDefault(); 
+        Swal.fire({
+            title: 'Esta seguro de querer retornar el Agente a su lugar de trabajo anterior?',
+            text: "Recuerde colocar datos verdaderos",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, guardo el registro!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = $('#RetornarNodo').attr('href');;
             }else{
                 return false;
             }

@@ -111,6 +111,7 @@ class AgController extends Controller
             'tb_divisiones.idDivision',
             'tb_divisiones.Descripcion as nomDivision',
         )
+        ->orderBy('PosicionAnterior','ASC')
         ->get();
         //dd($infoNodos);
 
@@ -271,14 +272,21 @@ class AgController extends Controller
         "FechaAltaN" => "2000-01-01"
 
         */
-        $EspCur=DB::table('tb_espacioscurriculares')
-        ->where('idEspacioCurricular',$request->idEspCur)
-        ->get();
-
-        //dd($EspCur[0]->Asignatura);
-        $idAsig=$EspCur[0]->Asignatura;
+        if($request->idEspCur != ""){
+            $EspCur=DB::table('tb_espacioscurriculares')
+            ->where('idEspacioCurricular',$request->idEspCur)
+            ->get();
+    
+            //dd($EspCur[0]->Asignatura);
+            $idAsig=$EspCur[0]->Asignatura;
+        }else{
+            $idAsig=1;
+        }
+        
         $nodo = new Nodo;
         $nodo->Agente = $request->idAgenteNuevoNodo;
+
+       
         $nodo->EspacioCurricular = $request->idEspCur;
         $nodo->Division = $request->idDivision;
         $nodo->CargoSalarial = $request->CargoSal;
@@ -370,27 +378,58 @@ class AgController extends Controller
 
 
     public function agregaNodo($nodoActual){
-        //creo el nodo siguiente
-        $Nuevo = new Nodo;
-        $Nuevo->Agente = null;
-        $Nuevo->EspacioCurricular = null;
-        $Nuevo->CargoSalarial = null;
-        $Nuevo->CantidadHoras = null;
-        $Nuevo->FechaDeAlta = null;
-        $Nuevo->Division = null;
-        $Nuevo->SitRev = null;
-        $Nuevo->Asignatura = null;
-        $Nuevo->Usuario = session('idUsuario');
-        $Nuevo->CUE = session('CUEa');
-        $Nuevo->PosicionAnterior = $nodoActual;
-        $Nuevo->save();
+        //aqui voy a verificar si es titular/interino u otra clase que requiera nodo anterior
+        /*
+        $nodo = Nodo::where('idNodo', $nodoActual)->first();
+        
+        if($nodo->SitRev == 1 || $nodo->sitRev == 2){
+            //aqui crea atras
+            $Nuevo = new Nodo;
+            $Nuevo->Agente = null;
+            $Nuevo->EspacioCurricular = $Nuevo->EspacioCurricular;
+            $Nuevo->CargoSalarial = $Nuevo->CargoSalarial;
+            $Nuevo->CantidadHoras = $Nuevo->CantidadHoras;
+            $Nuevo->FechaDeAlta = $Nuevo->FechaDeAlta;
+            $Nuevo->Division =  $Nuevo->Division;
+            $Nuevo->SitRev = 4;
+            $Nuevo->Asignatura = $Nuevo->Asignatura;
+            $Nuevo->Usuario = session('idUsuario');
+            $Nuevo->CUE = session('CUEa');
+            $Nuevo->PosicionSiguiente = $nodoActual;
+            $Nuevo->save();
+            
+            //obtengo el id y lo guardo relacionando al anterior que recibo por parametro
+            $Nuevo->idNodo;
+            $nodo = Nodo::where('idNodo', $nodoActual)->first();
+            $nodo->PosicionAnterior = $Nuevo->idNodo;
+            $nodo->save();
+        }else{*/
+            //aqui es suplente crea adelante
+                //creo el nodo siguiente
+            $Nuevo = new Nodo;
+            $Nuevo->Agente = null;
+            $Nuevo->EspacioCurricular = null;
+            $Nuevo->CargoSalarial = null;
+            $Nuevo->CantidadHoras = null;
+            $Nuevo->FechaDeAlta = null;
+            $Nuevo->Division = null;
+            $Nuevo->SitRev = null;
+            $Nuevo->Asignatura = null;
+            $Nuevo->Usuario = session('idUsuario');
+            $Nuevo->CUE = session('CUEa');
+            $Nuevo->PosicionAnterior = $nodoActual;
+            $Nuevo->save();
+           
+            //obtengo el id y lo guardo relacionando al anterior que recibo por parametro
+            $Nuevo->idNodo;
+            $nodo = Nodo::where('idNodo', $nodoActual)->first();
+            $nodo->PosicionSiguiente = $Nuevo->idNodo;
+            $nodo->save();
+       // }
+        
 
         
-        //obtengo el id y lo guardo relacionando al anterior que recibo por parametro
-        $Nuevo->idNodo;
-        $nodo = Nodo::where('idNodo', $nodoActual)->first();
-        $nodo->PosicionSiguiente = $Nuevo->idNodo;
-        $nodo->save();
+        
 
         return redirect()->back()->with('ConfirmarNuevoNodo','OK');
     }
@@ -685,6 +724,31 @@ class AgController extends Controller
             return redirect("/verArbolServicio")->with('ConfirmarBorradoNodo','OK');
     }
 
+    public function retornarNodo($idNodo){
+        //al retornar mantendremos la info del nodo, horarios queda como esta
+        /*
+        //antes de borrar debo verificar su anterior
+        $nodo =  Nodo::where('idNodo', $idNodo)->first();
+
+        //verifico si ese nodo a borrar tiene alguna relacion o siguiente
+        if($nodo->PosicionSiguiente != "")
+        {
+            return redirect("/verArbolServicio")->with('ConfirmarBorradoNodoAnulado','OK');
+        }
+        //dd($nodo->PosicionAnterior);
+        
+        //obtengo su nodo anterior y lo actualizo a null
+            $nodoAnterior =  Nodo::where('idNodo', $nodo->PosicionAnterior)->first();
+            $nodoAnterior->PosicionSiguiente = null;
+            $nodoAnterior->Usuario = session('idUsuario');
+            $nodoAnterior->save();
+        
+        //ahora puedo borrarlo al creado
+        DB::table('tb_nodos')
+            ->where('idNodo', $idNodo)
+            ->delete();*/
+            return redirect("/verArbolServicio")->with('ConfirmarRegresoNodo','OK');
+    }
     public function getFiltrandoNodos($valorBuscado){
         $CargosInicial=DB::table('tb_asignaturas')
         ->get();

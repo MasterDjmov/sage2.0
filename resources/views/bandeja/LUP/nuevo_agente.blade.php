@@ -56,7 +56,7 @@
               
               <form method="POST" action="{{ route('FormNuevoAgente') }}" class="formularioNuevoAgente">
               @csrf
-                <div class="card-body" id="NuevoAgenteContenido" style="display:none">
+                <div class="card-body" id="NuevoAgenteContenido1" style="display:none">
                     <div class="form-inline">
                         <label for="TipoDocumento">Tipo de Documento: </label>
                         <select class="form-control" name="TipoDocumento" id="TipoDocumento">
@@ -242,7 +242,7 @@
                 </div>
                 <!-- /.card-body -->
 
-                <div class="card-footer" id="NuevoAgenteContenido" style="display:none">
+                <div class="card-footer" id="NuevoAgenteContenido2" style="display:none">
                   <button type="submit" class="btn btn-primary">Agregar</button>
                 </div>
               </form>

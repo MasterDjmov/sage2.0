@@ -42,7 +42,7 @@
                                   <p class="mb-0">Cargo/Función: <label for="cargo" id="DescripcionCargo"> Sin Selección </label>
                                    <input type="hidden" id="CargoSal" name="CargoSal" value="">
                                   </p>
-                                  <p class="mb-0">Esp. Curricular: <label for="DescripcionEspCur" id="DescripcionEspCur"> Sin Selección </label>
+                                  <p class="mb-0">Esp. Curricular: <label for="DescripcionEspCur" id="DescripcionEspCur"> Sin Selección = Horas Disponibles</label>
                                    <input type="hidden" id="idEspCur" name="idEspCur" value="">
                                   </p>
                                   <p class="mb-0">Sit.Rev:
@@ -340,11 +340,11 @@
                                   <a  href="{{route('ActualizarNodoAgente',$o->idNodo)}}" class="btn mx-1 "  data-placement="top" title="Actualizar Docente"  >
                                     <span class="material-symbols-outlined pt-1" >edit_square</span>
                                   </a>
-                                  @if ($o->PosicionSiguiente == "")
-                                    <a href="{{route('agregaNodo',$o->idNodo)}}" class="btn mx-1">
+                                  {{-- @if ($o->PosicionSiguiente == "")
+                                    <a href="{{route('agregaNodo',$o->idNodo)}}" class="btn mx-1 Vincular">
                                     <span class="material-symbols-outlined pt-1" data-toggle="tooltip" data-placement="top" title="Vincular">compare_arrows</span>
                                   </a>
-                                  @endif
+                                  @endif --}}
                                   
                                 </div>
                               </div>
@@ -388,7 +388,7 @@
                               <div class="card shadow-lg bg-{{$infoNodoSiguiente[0]->nomSitRev}}">
                                 <div class="card-title mt-4 d-flex justify-content-center">
                                 @if ($sig->Nombres != "")
-                                  <h5 id="DescripcionNombreAgente" class="mb-0">({{$sig->idNodo}})-Docente: {{strtoupper($sig->Nombres)}}</h5>
+                                  <h5 id="DescripcionNombreAgente" class="mb-0">({{$sig->idNodo}})-Docente: {{strtoupper($sig->Nombres)}} <span class="material-symbols-outlined text-danger">history</span></h5>
                                 @else
                                   <h5 id="DescripcionNombreAgente" class="mb-0">({{$sig->idNodo}})Docente: <b>VACANTE</b> </h5>
                                 @endif
@@ -512,7 +512,7 @@
     $('.formularioNuevoAgenteNodo').submit(function(e){
       if($("#idAgente").val()=="" ||
         $("#CargoSal").val()=="" ||
-        $("#idEspCur").val()=="" ||
+        //$("#idEspCur").val()=="" ||
         $("#cant_horas").val()==""){
         console.log("error")
          e.preventDefault();
@@ -539,6 +539,7 @@
       }
     })
     
+
     $('.ConfirmarAgregarAgenteANodo').submit(function(e){
         e.preventDefault();
         Swal.fire({
