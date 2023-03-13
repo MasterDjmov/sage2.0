@@ -120,10 +120,28 @@ function getAgentes() {
      var DescripcionAgente = document.getElementById('DescripcionNombreAgente');
      var nomAgenteModal = document.getElementById('nomAgenteModal'+$idAgente);
      DescripcionAgente.innerHTML="Docente: " + nomAgenteModal.value;
-     document.getElementById('idAgente').value=$idAgente;
-    
+     document.getElementById('idAgenteNuevoNodo').value=$idAgente;   
  }
 
+ function getAgentesActualizar() {
+    if( $("#buscarAgente").val() != ""){
+        $.ajax({
+            type: "get",
+            url: "/getAgentesActualizar/" + $("#buscarAgente").val(),
+            success: function (response) {
+                document.getElementById('contenidoAgentes').innerHTML=response.msg;
+            }
+        });
+    }
+    
+ }
+ 
+ function seleccionarAgentesActualizar($idAgente){
+     var DescripcionAgente = document.getElementById('DescripcionNombreAgenteActualizar');    
+     var nomAgenteModal = document.getElementById('nomAgenteModal'+$idAgente);
+     DescripcionAgente.value=nomAgenteModal.value;
+     document.getElementById('idAgente').value=$idAgente;
+ }
  function getAgentesRel(nodo) {
     //alert(nodo);
     $.ajax({
@@ -159,7 +177,8 @@ function getAgentes() {
                     'error'
                         )
                 //alert("El DNI ya existe");
-                document.getElementById('NuevoAgenteContenido').style.display = "none";
+                document.getElementById('NuevoAgenteContenido1').style.display = "none";
+                document.getElementById('NuevoAgenteContenido2').style.display = "none";
             }else{
                 //alert("El DNI buscado no fue encontrado, puede agregarlo");
                 Swal.fire(
@@ -167,7 +186,8 @@ function getAgentes() {
                     'El DNI buscado puede ser usado',
                     'success'
                         )
-                document.getElementById('NuevoAgenteContenido').style.display="block";
+                document.getElementById('NuevoAgenteContenido1').style.display="block";
+                document.getElementById('NuevoAgenteContenido2').style.display="block";
                 document.getElementById('Documento').value=document.getElementById('buscarAgente').value;
                 document.getElementById('DH').value=document.getElementById('buscarAgente').value;
             }
@@ -190,10 +210,10 @@ function getAgentes() {
  function seleccionarLocalidad($idLocalidad){
     
     
-     var DescripcionLocalidad = document.getElementById('DescripcionLocalidad');
+     var DescripcionLocalidad = document.getElementById('nomLocalidad');
      var nomLocalidadModal = document.getElementById('nomLocalidadModal'+$idLocalidad);
      DescripcionLocalidad.value=nomLocalidadModal.value;
-     document.getElementById('idLocalidad').value=$idLocalidad;
+     document.getElementById('Localidad').value=$idLocalidad;
     
  }
 
@@ -298,3 +318,61 @@ function getAgentes() {
      document.getElementById('Asignatura').value=$idAsignatura;
     
  }
+
+ //ag con cargos y funciones
+ function getCargosFunciones(){
+    if( $("#btCargos").val() != ""){
+        $.ajax({
+            type: "get",
+            url: "/getCargosFunciones/"+ $("#btCargos").val(),
+            success: function (response) {
+                document.getElementById('contenidoCargosFunciones').innerHTML=response.msg;
+                
+            }
+        }); 
+    }
+ }
+ function seleccionarCargo($idCargo){
+    var DescripcionCargo = document.getElementById('DescripcionCargo');
+    var nomCargoModal = document.getElementById('nomCargoModal'+$idCargo);
+    var nomCodigoModal = document.getElementById('nomCodigoModal'+$idCargo);
+    DescripcionCargo.innerHTML=nomCargoModal.value+"("+ nomCodigoModal.value +")";
+    document.getElementById('CargoSal').value=$idCargo;
+   
+}
+
+function seleccionarAsigAgente($idAsignatura){
+    var DescripcionEspCur = document.getElementById('DescripcionEspCur');
+    var nomAsigModal = document.getElementById('nomAsignaturaAgenteModal'+$idAsignatura);
+    var nomCodigoModal = document.getElementById('idAsignaturaAgenteModal'+$idAsignatura);
+    //console.log(document.getElementById('nomAsignaturaAgenteModal'+$idAsignatura).value)
+    DescripcionEspCur.innerHTML=nomAsigModal.value;
+    document.getElementById('idEspCur').value=nomCodigoModal.value;
+   
+}
+
+function getFilterNodes(){
+    if( $("#FilterNodo").val() != ""){
+        $.ajax({
+            type: "get",
+            url: "/getFiltrandoNodos/"+ $("#FilterNodo").val(),
+            success: function (response) {
+                console.log(response);
+                //document.getElementById('contenidoNodos').innerHTML=response.msg;
+                
+            }
+        }); 
+        
+    }else{
+        console.log("no hay que buscar");
+    }
+        
+ }
+ function seleccionarCargo($idCargo){
+    var DescripcionCargo = document.getElementById('DescripcionCargo');
+    var nomCargoModal = document.getElementById('nomCargoModal'+$idCargo);
+    var nomCodigoModal = document.getElementById('nomCodigoModal'+$idCargo);
+    DescripcionCargo.innerHTML=nomCargoModal.value+"("+ nomCodigoModal.value +")";
+    document.getElementById('CargoSal').value=$idCargo;
+   
+}

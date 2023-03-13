@@ -37,7 +37,13 @@ class LoginController extends Controller
                 ->get();
                 //dd($reparticion[0]->Organizacion);
                 
-                session(['idSubOrganizacion'=>$reparticion[0]->subOrganizacion]);         
+                $subOrganizacion=DB::table('tb_suborganizaciones')
+                ->where('tb_suborganizaciones.idsuborganizacion',$reparticion[0]->subOrganizacion)
+                ->select('*')
+                ->get();
+                session(['CUE'=>$subOrganizacion[0]->CUE]);
+                session(['CUEa'=>$subOrganizacion[0]->cuecompleto]);
+                session(['idSubOrganizacion'=>$reparticion[0]->subOrganizacion]);     
                 session(['Validar' => 'ok']);
                 $datos=array(
                     'mensajeError'=>"Usuario Correcto",

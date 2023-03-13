@@ -167,7 +167,7 @@
                             <label for="CursoDivision">Cursos Disponibles</label>
                             <select class="form-control" name="CursoDivision" id="CursoDivision">
                             @foreach($Divisiones as $key => $o)
-                                <option value="{{$o->idDivision}}">{{$o->Descripcion}}</option>
+                                <option value="{{$o->Curso}}">{{$o->Curso}}</option>
                             @endforeach
                             </select>
                         </div>

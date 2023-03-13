@@ -74,6 +74,7 @@ Route::get('/verAgentes/{idPlaza}',[LupController::class,'verAgentes'])->name('v
 Route::get('/nuevoAgente',[LupController::class,'nuevoAgente'])->name('nuevoAgente');
 Route::post('/FormNuevoAgente',[LupController::class,'FormNuevoAgente'])->name('FormNuevoAgente');
 
+
 //Servicio General
 Route::get('/verArbolServicio',[AgController::class,'verArbolServicio'])->name('verArbolServicio');
 Route::get('/getAgentes/{DNI}',[AgController::class,'getAgentes'])->name('getAgentes');
@@ -84,7 +85,15 @@ Route::get('/getLocalidades/{localidad}',[AgController::class,'getLocalidades'])
 Route::get('/getDepartamentos/{departamento}',[AgController::class,'getDepartamentos'])->name('getDepartamentos');
 Route::get('/agregaNodo/{nodo}',[AgController::class,'agregaNodo'])->name('agregaNodo');
 Route::post('/agregarDatoANodo',[AgController::class,'agregarDatoANodo'])->name('agregarDatoANodo');
-
+Route::get('/getCargosFunciones/{nomCargoFuncionCodigo}',[AgController::class,'getCargosFunciones'])->name('getCargosFunciones');
+Route::get('/ActualizarNodoAgente/{idNodo}',[AgController::class,'ActualizarNodoAgente'])->name('ActualizarNodoAgente');
+Route::post('/formularioActualizarAgente',[AgController::class,'formularioActualizarAgente'])->name('formularioActualizarAgente');
+Route::post('/formularioActualizarHorario',[AgController::class,'formularioActualizarHorario'])->name('formularioActualizarHorario');
+Route::get('/getAgentesActualizar/{DNI}',[AgController::class,'getAgentesActualizar'])->name('getAgentesActualizar');
+Route::get('/desvincularDocente/{idNodo}',[AgController::class,'desvincularDocente'])->name('desvincularDocente');
+Route::get('/eliminarNodo/{idNodo}',[AgController::class,'eliminarNodo'])->name('eliminarNodo');
+Route::get('/getFiltrandoNodos/{idNodo}',[AgController::class,'getFiltrandoNodos'])->name('getFiltrandoNodos');
+Route::get('/retornarNodo/{idNodo}',[AgController::class,'retornarNodo'])->name('retornarNodo');
 
 
 
