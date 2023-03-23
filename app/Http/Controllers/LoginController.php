@@ -11,7 +11,7 @@ class LoginController extends Controller
     
     public function index(){
         $datos=array(
-            'mensajeError'=>"Bloqueado Prueba"
+            'mensajeError'=>"Bloqueado Prueba 2"
         );
         return view('login.index',$datos);
     }
